@@ -9,7 +9,7 @@
 package org.hacdc.tecs.project_6.assembler;
 
 public abstract class Command {
-	protected final String command;
+	protected String command;
 
 	public final String getCommand () {
 		return command;
