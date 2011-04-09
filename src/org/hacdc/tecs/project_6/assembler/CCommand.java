@@ -24,8 +24,8 @@ public class CCommand extends Command {
 		}
 		int jump_pos = command.indexOf(";");
 		if (jump_pos != -1) {
-			this.jump = command.substring(dest_pos + 1, command.length());
-			command = command.substring(0, dest_pos);
+			this.jump = command.substring(jump_pos + 1, command.length());
+			command = command.substring(0, jump_pos);
 		} else {
 			this.jump = null;
 		}
