@@ -39,7 +39,7 @@ public class TestParser extends TestCase {
 		assertEquals("commandList should be empty.", 0, p.commandList.size());
 	}
 
-	public void testACommand () {
+	public void testSimpleACommand () {
 		String s = "@0\n"
 			+ " @0\n"
 			+ "@0 \n"
@@ -50,8 +50,8 @@ public class TestParser extends TestCase {
 			+ "@0	//comment";
 		Parser p = new Parser(new ByteArrayInputStream(s.getBytes()));
 		assertEquals("commandList should have 8 entries.", 8, p.commandList.size());
-		for (String c: p.commandList) {
-			assertEquals("All command should be equal to '@0'.", "@0", c);
+		for (Command c: p.commandList) {
+			assertEquals("All command should be equal to '@0'.", "@0", c.getCommand());
 		}
 	}
 }

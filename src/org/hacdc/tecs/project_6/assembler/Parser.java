@@ -14,7 +14,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class Parser {
-	protected ArrayList<String> commandList = new ArrayList<String>();
+	protected ArrayList<Command> commandList = new ArrayList<Command>();
 	/**
 	 * Constructor.
 	 *
@@ -42,7 +42,7 @@ public class Parser {
 				}
 
 				// Add the command to the commandList
-				this.commandList.add(line);
+				this.commandList.add(CommandFactory.getCommand(line));
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
