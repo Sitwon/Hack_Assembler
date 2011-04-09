@@ -13,6 +13,16 @@ public class CCommand extends Command {
 	protected final String comp;
 	protected final String jump;
 
+	/**
+	 * Constructor for CCommand.
+	 *
+	 * C-Commands are computation commands. They instruct the CPU to perform a
+	 * computation. They result can be optionally stored into a register or
+	 * RAM address. The command can also optionally jump to a different
+	 * ROM location based on the result of the computation.
+	 *
+	 * @param command The raw, unparsed C-Command.
+	 */
 	public CCommand (String command) {
 		this.command = command;
 		int dest_pos = command.indexOf("=");
@@ -32,14 +42,31 @@ public class CCommand extends Command {
 		this.comp = command;
 	}
 
+	/**
+	 * Getter for the destination field.
+	 *
+	 * This field is optional. If the command has no destination this
+	 * method will return null.
+	 */
 	public String getDest () {
 		return this.dest;
 	}
 
+	/**
+	 * Getter for the computation field.
+	 *
+	 * This field is mandatory.
+	 */
 	public String getComp () {
 		return this.comp;
 	}
 
+	/**
+	 * Getter for the jump field.
+	 *
+	 * This field is optional. If the command has no jump this method
+	 * will return null.
+	 */
 	public String getJump () {
 		return this.jump;
 	}

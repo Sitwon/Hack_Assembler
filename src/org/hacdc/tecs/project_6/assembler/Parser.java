@@ -18,7 +18,7 @@ public class Parser {
 	/**
 	 * Constructor.
 	 *
-	 * @args input An InputStream containing the assembly language commands.
+	 * @param input An InputStream containing the assembly language commands.
 	 */
 	public Parser (InputStream input) {
 		if (input == null) {
