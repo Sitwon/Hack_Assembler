@@ -10,11 +10,11 @@
 
 package org.hacdc.tecs.project_6.assembler;
 
-import java.io.InputStream;
+import java.io.*;
+import java.util.ArrayList;
 
 public class Parser {
-	private final InputStream input;
-
+	protected ArrayList<String> commandList = new ArrayList<String>();
 	/**
 	 * Constructor.
 	 *
@@ -24,7 +24,29 @@ public class Parser {
 		if (input == null) {
 			throw new IllegalArgumentException("The input argument cannot be null.");
 		}
-		this.input = input;
+
+		BufferedReader input_reader = new BufferedReader(new InputStreamReader(input));
+		try {
+			String line;
+			while ((line = input_reader.readLine()) != null) {
+				line = line.trim();
+
+				// Strip off comments
+				if (line.indexOf("//") != -1) {
+					line = line.substring(0, line.indexOf("//")).trim();
+				}
+
+				// If the line was blank or only comments, skip it
+				if (line.isEmpty()) {
+					continue;
+				}
+
+				// Add the command to the commandList
+				this.commandList.add(line);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 }
 
