@@ -21,6 +21,9 @@ public class Parser {
 	 * @args input An InputStream containing the assembly language commands.
 	 */
 	public Parser (InputStream input) {
+		if (input == null) {
+			throw new IllegalArgumentException("The input argument cannot be null.");
+		}
 		this.input = input;
 	}
 }
