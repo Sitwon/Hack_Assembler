@@ -34,6 +34,30 @@ public class TestCode extends TestCase {
 
 	public void testTranslateCCommand () {
 		Code code = new Code();
+		try {
+			code.translate(new CCommand("M=;JMP"));
+			fail("This should fail, missing comp symbol.");
+		} catch (IllegalCommandException ex) {
+			assertTrue(true);
+		}
+		try {
+			code.translate(new CCommand("DM=0"));
+			fail("This should fail, incorrect dest symbol.");
+		} catch (IllegalCommandException ex) {
+			assertTrue(true);
+		}
+		try {
+			code.translate(new CCommand("M=M+D"));
+			fail("This should fail, incorrect comp symbol.");
+		} catch (IllegalCommandException ex) {
+			assertTrue(true);
+		}
+		try {
+			code.translate(new CCommand("0;jmp"));
+			fail("This should fail, incorrect jump symbol.");
+		} catch (IllegalCommandException ex) {
+			assertTrue(true);
+		}
 		// Examples from the book.
 		assertEquals("1110111111001000", code.translate(new CCommand("M=1")));
 		assertEquals("1110101010001000", code.translate(new CCommand("M=0")));
