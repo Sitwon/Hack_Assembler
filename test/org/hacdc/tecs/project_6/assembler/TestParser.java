@@ -26,6 +26,7 @@ public class TestParser extends TestCase {
 			+ "	 ";
 		Parser p = new Parser(new ByteArrayInputStream(s.getBytes()));
 		assertEquals("commandList should be empty.", 0, p.commandList.size());
+		assertFalse(p.hasMoreCommands());
 	}
 
 	public void testOnlyComments () {
@@ -37,6 +38,7 @@ public class TestParser extends TestCase {
 			+ "//";
 		Parser p = new Parser(new ByteArrayInputStream(s.getBytes()));
 		assertEquals("commandList should be empty.", 0, p.commandList.size());
+		assertFalse(p.hasMoreCommands());
 	}
 
 	public void testSimpleACommand () {
@@ -67,6 +69,21 @@ public class TestParser extends TestCase {
 		for (Command c: p.commandList) {
 			assertEquals("All command should be equal to '0'.", "0", c.getCommand());
 		}
+	}
+
+	public void testNextCommand () {
+		String s = "// comment\n"
+			+ "@0\n"
+			+ "M=1\n"
+			+ "@1\n"
+			+ "D=A";
+		Parser p = new Parser(new ByteArrayInputStream(s.getBytes()));
+		assertEquals("commandList should have 4 entries.", 4, p.commandList.size());
+		for (int i = 0; i < 4; i++) {
+			assertNotNull(p.nextCommand());
+		}
+		assertFalse(p.hasMoreCommands());
+		assertNull(p.nextCommand());
 	}
 }
 

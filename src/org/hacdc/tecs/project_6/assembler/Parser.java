@@ -15,6 +15,8 @@ import java.util.ArrayList;
 
 public class Parser {
 	protected ArrayList<Command> commandList = new ArrayList<Command>();
+	protected int position = 0;
+
 	/**
 	 * Constructor.
 	 *
@@ -47,6 +49,32 @@ public class Parser {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+	}
+
+	/**
+	 * Checks if there are any commands left in the stream.
+	 *
+	 * @return true if there are unread Commands, otherwise false.
+	 */
+	public boolean hasMoreCommands () {
+		if (this.position >= this.commandList.size()) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Get the next command from the stream.
+	 *
+	 * @return the next Command in the stream, or null if no Commands are left.
+	 */
+	public Command nextCommand () {
+		if (!this.hasMoreCommands()) {
+			return null;
+		}
+		Command c = this.commandList.get(this.position);
+		this.position += 1;
+		return c;
 	}
 }
 
