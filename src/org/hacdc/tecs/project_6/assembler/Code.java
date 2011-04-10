@@ -45,7 +45,7 @@ public class Code {
 		this.comp_table.put("D|M", "1010101");
 
 		this.dest_table = new HashMap<String, String>();
-		this.dest_table.put("null", "000");
+		this.dest_table.put(null, "000");
 		this.dest_table.put("M", "001");
 		this.dest_table.put("D", "010");
 		this.dest_table.put("MD", "011");
@@ -55,7 +55,7 @@ public class Code {
 		this.dest_table.put("AMD", "111");
 
 		this.jump_table = new HashMap<String, String>();
-		this.jump_table.put("null", "000");
+		this.jump_table.put(null, "000");
 		this.jump_table.put("JGT", "001");
 		this.jump_table.put("JEQ", "010");
 		this.jump_table.put("JGE", "011");
