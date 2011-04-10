@@ -20,6 +20,9 @@ public class ACommand extends Command {
 	 * @param command The raw, unparsed A-Command.
 	 */
 	public ACommand (String command) {
+		if ((command == null) || (command.length() < 2)) {
+			throw new IllegalArgumentException("Invalid A-Command.");
+		}
 		this.command = command;
 		this.address = command.substring(1);
 	}
