@@ -19,6 +19,10 @@ public class Main {
 	 * @param args The command-line arguments.
 	 */
 	public static void main (String[] args) {
+		if (args.length != 1) {
+			System.err.println(printUsage());
+			System.exit(1);
+		}
 		try {
 			Parser parser = new Parser(new FileInputStream(args[0]));
 			while (parser.hasMoreCommands()) {
@@ -27,6 +31,10 @@ public class Main {
 		} catch (FileNotFoundException ex) {
 			System.err.println("Error: Input file was not found.");
 		}
+	}
+
+	protected static String printUsage () {
+		return "Usage: java -jar assembler.jar <input file>";
 	}
 }
 
