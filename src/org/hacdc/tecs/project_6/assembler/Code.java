@@ -65,7 +65,7 @@ public class Code {
 		this.jump_table.put("JMP", "111");
 	}
 
-	public String translate (Command command) {
+	public String translate (Command command) throws IllegalCommandException {
 		if (command instanceof ACommand) {
 			return this.translateACommand((ACommand) command);
 		} else if (command instanceof CCommand) {
@@ -75,7 +75,7 @@ public class Code {
 		}
 	}
 
-	protected String translateACommand (ACommand command) {
+	protected String translateACommand (ACommand command) throws IllegalCommandException {
 		String binary = Integer.toBinaryString(Integer.parseInt(command.getAddress()));
 		if (binary.length() > 15) {
 			throw new IllegalCommandException("Address is too large.");
@@ -86,7 +86,7 @@ public class Code {
 		return binary;
 	}
 
-	protected String translateCCommand (CCommand command) {
+	protected String translateCCommand (CCommand command) throws IllegalCommandException {
 		String binary = "111";
 		if (!this.comp_table.containsKey(command.getComp())) {
 			throw new IllegalCommandException("Unknown comp symbol.");

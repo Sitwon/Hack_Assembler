@@ -6,7 +6,7 @@
 
 package org.hacdc.tecs.project_6.assembler;
 
-public class IllegalCommandException extends RuntimeException {
+public class IllegalCommandException extends Exception {
 	public IllegalCommandException () {
 		super();
 	}

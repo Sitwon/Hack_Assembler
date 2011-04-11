@@ -26,10 +26,16 @@ public class Main {
 		try {
 			Parser parser = new Parser(new FileInputStream(args[0]));
 			while (parser.hasMoreCommands()) {
-				System.out.println(code.translate(parser.nextCommand()));
+				try {
+					System.out.println(code.translate(parser.nextCommand()));
+				} catch (IllegalCommandException ex) {
+					System.err.println(ex.getMessage());
+					System.exit(3);
+				}
 			}
 		} catch (FileNotFoundException ex) {
 			System.err.println("Error: Input file was not found.");
+			System.exit(2);
 		}
 	}
 
