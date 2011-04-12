@@ -31,7 +31,7 @@ public class SymbolTable extends HashMap<String, Integer> {
 	}
 
 	/**
-	 * Register a new variable in the table.
+	 * Get the address or register a new one.
 	 *
 	 * Register a new variable in the table. If the variable is already registered,
 	 * return the existing address.
@@ -39,9 +39,9 @@ public class SymbolTable extends HashMap<String, Integer> {
 	 * @param symbol The new variable to be registered.
 	 * @return The address of the registered variable.
 	 */
-	public int registerVariable (String symbol) {
+	public int get (String symbol) {
 		if (this.contains(symbol)) {
-			return this.getAddress(symbol);
+			return super.get(symbol);
 		}
 		this.addEntry(symbol, this.nextAddress);
 		return this.nextAddress++;
@@ -64,16 +64,6 @@ public class SymbolTable extends HashMap<String, Integer> {
 	 */
 	public boolean contains (String symbol) {
 		return this.containsKey(symbol);
-	}
-
-	/**
-	 * Look up a symbol's address.
-	 *
-	 * @param symbol The symbol to look up.
-	 * @return The corresponding address.
-	 */
-	public Integer getAddress (String symbol) {
-		return this.get(symbol);
 	}
 }
 
