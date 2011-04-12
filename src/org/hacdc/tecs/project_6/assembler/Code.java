@@ -76,7 +76,13 @@ public class Code {
 	}
 
 	protected String translateACommand (ACommand command) throws IllegalCommandException {
-		String binary = Integer.toBinaryString(Integer.parseInt(command.getAddress()));
+		int address;
+		try {
+			address = Integer.parseInt(command.getAddress());
+		} catch (NumberFormatException nfe) {
+			address = Main.symbol_table.get(command.getAddress());
+		}
+		String binary = Integer.toBinaryString(address);
 		if (binary.length() > 15) {
 			throw new IllegalCommandException("Address is too large.");
 		}

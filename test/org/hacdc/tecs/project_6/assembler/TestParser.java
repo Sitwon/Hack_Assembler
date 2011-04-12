@@ -71,6 +71,17 @@ public class TestParser extends TestCase {
 		}
 	}
 
+	public void testSimpleLCommand () {
+		String s = "(LOOP)\n"
+			+ "  (INNER_LOOP)   \n"
+			+ "	(END)";
+		Parser p = new Parser(new ByteArrayInputStream(s.getBytes()));
+		assertEquals("commandList should have 0 entries.", 0, p.commandList.size());
+		assertEquals(0, Main.symbol_table.get("LOOP"));
+		assertEquals(0, Main.symbol_table.get("INNER_LOOP"));
+		assertEquals(0, Main.symbol_table.get("END"));
+	}
+
 	public void testNextCommand () {
 		String s = "// comment\n"
 			+ "@0\n"

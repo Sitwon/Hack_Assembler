@@ -10,6 +10,7 @@ import java.io.*;
 
 public class Main {
 	protected static Code code = new Code();
+	protected static SymbolTable symbol_table = new SymbolTable();
 
 	/**
 	 * The entry-point for the application.

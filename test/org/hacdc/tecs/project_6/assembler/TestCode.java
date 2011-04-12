@@ -40,6 +40,21 @@ public class TestCode extends TestCase {
 		}
 	}
 
+	public void testSymbols () {
+		Code code = new Code();
+		try {
+			assertEquals("0000000000010000", code.translate(new ACommand("@a")));
+			assertEquals("0000000000010001", code.translate(new ACommand("@b")));
+			assertEquals("0000000000010000", code.translate(new ACommand("@a")));
+			assertEquals("0000000000010010", code.translate(new ACommand("@c")));
+			assertEquals("0000000000010011", code.translate(new ACommand("@d")));
+			assertEquals("0000000000010001", code.translate(new ACommand("@b")));
+			assertEquals("0000000000010000", code.translate(new ACommand("@a")));
+		} catch (IllegalCommandException ex) {
+			fail("No exception should have been thrown.");
+		}
+	}
+
 	public void testTranslateCCommand () {
 		Code code = new Code();
 		try {

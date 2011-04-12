@@ -30,6 +30,7 @@ public class Parser {
 		BufferedReader input_reader = new BufferedReader(new InputStreamReader(input));
 		try {
 			String line;
+			int line_number = 0;
 			while ((line = input_reader.readLine()) != null) {
 				line = line.trim();
 
@@ -43,8 +44,15 @@ public class Parser {
 					continue;
 				}
 
-				// Add the command to the commandList
-				this.commandList.add(CommandFactory.getCommand(line));
+				// Process the command
+				Command command = CommandFactory.getCommand(line);
+				if (command instanceof LCommand) {
+					Main.symbol_table.addEntry(((LCommand) command).getName(), line_number);
+				} else {
+					// Add the command to the commandList
+					this.commandList.add(command);
+					line_number++;
+				}
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
