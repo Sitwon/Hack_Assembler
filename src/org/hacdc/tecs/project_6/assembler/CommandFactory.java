@@ -20,6 +20,8 @@ public class CommandFactory {
 	public static Command getCommand (String command) {
 		if (command.startsWith("@")) {
 			return (Command) new ACommand(command);
+		} else if (command.startsWith("(")) {
+			return (Command) new LCommand(command);
 		}
 		return (Command) new CCommand(command);
 	}

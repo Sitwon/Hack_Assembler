@@ -12,6 +12,10 @@ public class TestCommandFactory extends TestCase {
 		if (!(c instanceof ACommand)) {
 			fail("Should be an instance of ACommand.");
 		}
+		c = CommandFactory.getCommand("@name");
+		if (!(c instanceof ACommand)) {
+			fail("Should be an instance of ACommand.");
+		}
 	}
 
 	public void testCCommand () {
@@ -33,6 +37,13 @@ public class TestCommandFactory extends TestCase {
 		c = CommandFactory.getCommand("A=0;JMP");
 		if (!(c instanceof CCommand)) {
 			fail("Should be an instance of CCommand.");
+		}
+	}
+
+	public void testLCommand () {
+		Command c = CommandFactory.getCommand("(LOOP)");
+		if (!(c instanceof LCommand)) {
+			fail("Should be an instance of LCommand.");
 		}
 	}
 }
